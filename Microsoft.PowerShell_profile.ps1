@@ -14,6 +14,8 @@ function prompt
     #   with the path.
     $Host.UI.RawUI.WindowTitle = Get-Location
 
+    $currentTime = Get-Date -Format "dddd MM/dd/yyyy HH:mm"
+    Write-Host "[$currentTime] " -NoNewLine -ForegroundColor 'Blue'
 
     $parentDirectory = Get-Location `
         | Split-Path -Parent -ErrorAction SilentlyContinue `
