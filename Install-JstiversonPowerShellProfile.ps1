@@ -21,6 +21,24 @@ Param (
 )
 
 Process {
+    # Ensure execution policy is set to "remote signed" for this to work
+
+    # Create the certificate
+    $cert = Get-ChildItem cert:\CurrentUser\my -codesigning -ErrorAction SilentlyContinue | Where-Object {$_.subject.equals("CN=Jonathyn Stiverson Profile Cert")}
+
+    If (-not $cert) {
+        $params = @{
+            Subject = "CN=Jonathyn Stiverson Profile Cert"
+            Type = "CodeSigning"
+            CertStoreLocation = "Cert:\CurrentUser\My"
+            HashAlgorithm = "sha256"
+        }
+        $cert = New-SelfSignedCertificate @params
+    }
+
+    # Sign the script(s)
     Copy-Item -Path "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" -Destination "$profile" -Force `
-        -VerbosePreference:$VerbosePreference -WhatIfPreference:$WhatIfPreference
+        -Verbose:$VerbosePreference -WhatIf:$WhatIfPreference
+    Set-AuthenticodeSignature "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" $cert `
+        -Verbose:$VerbosePreference -WhatIf:$WhatIfPreference
 }
