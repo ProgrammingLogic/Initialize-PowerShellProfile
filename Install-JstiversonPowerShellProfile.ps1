@@ -37,8 +37,6 @@ Process {
     }
 
     # Sign the script(s)
-    Copy-Item -Path "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" -Destination "$profile" -Force `
-        -Verbose:$VerbosePreference -WhatIf:$WhatIfPreference
-    Set-AuthenticodeSignature "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" $cert `
-        -Verbose:$VerbosePreference -WhatIf:$WhatIfPreference
+    Copy-Item -Path "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" -Destination "$Profile" -Force -Verbose:$False -WhatIf:$WhatIfPreference
+    Set-AuthenticodeSignature "$Profile" $cert -Verbose:$False -WhatIf:$WhatIfPreference
 }
