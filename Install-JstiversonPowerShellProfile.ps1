@@ -28,12 +28,6 @@ Process {
         Write-Warning "Unable to set execution policy! Profile might not work."
     }
 
-    $poshGitModule = Get-Module -ListAvailable -Name posh-git
-    If (-not $poshGitModule) {
-        Write-Verbose "posh-git PowerShell module not found, installing"
-        Install-Module posh-git -Scope CurrentUser -Force
-    }
-
     # Create the certificate
     $cert = Get-ChildItem cert:\CurrentUser\my -codesigning -ErrorAction SilentlyContinue | Where-Object {$_.subject.equals("CN=Jonathyn Stiverson Profile Cert")}
 
