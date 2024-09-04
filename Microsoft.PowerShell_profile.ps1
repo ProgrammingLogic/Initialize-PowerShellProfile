@@ -1,3 +1,6 @@
+# Import functions from profile library
+Import-Module -Force "$PSScriptRoot\functions\Play-HalloweeenTheme.ps1"
+
 # Aliases with arguments
 #
 # We have to define a function and pass args into it, because Set-Alias does not support
