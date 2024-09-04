@@ -6,6 +6,7 @@ function gitc { git commit --verbose @args }
 function gitp { git push @args }
 function gitpu { git pull @args }
 function gita { git add @args }
+function touch { New-Item -Type File -Path @args } # Because I can't stop using the *nix touch command
 
 # Set the PowerShell prompt
 function prompt
