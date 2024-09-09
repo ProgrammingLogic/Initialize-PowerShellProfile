@@ -13,7 +13,7 @@ Install-JstiversonPowerShellProfile.ps1
 
 .NOTES
 Author: Jonathyn Stiverson (jlstiverson2002@protonmail.com)
-Date: 08/30/2024
+Date: 09/09/2024
 #>
 [CmdletBinding(SupportsShouldProcess)]
 Param (
@@ -41,11 +41,9 @@ Process {
         $cert = New-SelfSignedCertificate @params
     }
 
-    # When Windows is first setup, $Profile's parent directory doesn't exist. This forces it to be created if this is 
-    # 	the case.
+    # When Windows is first setup, $Profile doesn't exist. This forces it to be created.
     If (-not (Test-Path $Profile)) {
-	$directory = $Profile | Split-Path -Parent
-	New-Item -Path $directory -Type Directory -WhatIf:$WhatIfPreference
+	New-Item -Path $Profile -Type File -WhatIf:$WhatIfPreference
     }
 
     # Sign the script(s)
