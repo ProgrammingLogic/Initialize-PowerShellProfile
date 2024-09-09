@@ -43,7 +43,7 @@ Process {
 
     # When Windows is first setup, $Profile doesn't exist. This forces it to be created.
     If (-not (Test-Path $Profile)) {
-	New-Item -Path $Profile -Type File -WhatIf:$WhatIfPreference
+        New-Item -Path $Profile -Force -Type File -WhatIf:$WhatIfPreference
     }
 
     # Sign the script(s)
