@@ -41,6 +41,13 @@ Process {
         $cert = New-SelfSignedCertificate @params
     }
 
+    # When Windows is first setup, $Profile's parent directory doesn't exist. This forces it to be created if this is 
+    # 	the case.
+    If (-not (Test-Path $Profile)) {
+	$directory = $Profile | Split-Path -Parent
+	New-Item -Path $directory -Type Directory -WhatIf:$WhatIfPreference
+    }
+
     # Sign the script(s)
     Copy-Item -Path "$PSScriptRoot\Microsoft.PowerShell_profile.ps1" -Destination "$Profile" -Force -Verbose:$False -WhatIf:$WhatIfPreference
     Set-AuthenticodeSignature "$Profile" $cert -Verbose:$False -WhatIf:$WhatIfPreference
