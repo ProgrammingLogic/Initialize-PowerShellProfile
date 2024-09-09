@@ -16,6 +16,9 @@ function cd-apps { Set-Location -Path "\\al-fs1\Apps" }
 function cd-signatures { Set-Location -Path "\\al-fs1\infotec\Documentation\Signatures" }
 function cd-infotec { Set-Location -Path "\\al-fs1\infotec" }
 function cd-hdrive { Set-Location -Path "\\al-fs1\userdata\jstiverson" }
+function cd-downloads { Set-Location -Path "C:\Users\jstiverson\Downloads" }
+function cd-desktop { Set-Location -Path "C:\Users\jstiverson\Desktop" }
+function cd-documents { Set-Location -Path "C:\Users\jstiverson\Documents" }
 
 # Set the PowerShell prompt
 function prompt
